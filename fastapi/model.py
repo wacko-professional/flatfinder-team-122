@@ -37,7 +37,10 @@ def preprocess_df_by_params(town, flat_type):
 def train(params: dict):
     town = params['town']
     flat_type = params['flat_type']
-    town_flat_type = town+' '+flat_type
+    if town == 'KALLANG/WHAMPOA':
+        town_flat_type = 'KALLANG-WHAMPOA'+' '+flat_type
+    else:
+        town_flat_type = town+' '+flat_type
     df = preprocess_df_by_params(town, flat_type)
     m = Prophet(seasonality_mode='multiplicative',
                 changepoint_prior_scale=0.5,
@@ -51,7 +54,10 @@ def train(params: dict):
 def predict(params: dict):
     town = params['town']
     flat_type = params['flat_type']
-    town_flat_type = town+' '+flat_type
+    if town == 'KALLANG/WHAMPOA':
+        town_flat_type = 'KALLANG-WHAMPOA'+' '+flat_type
+    else:
+        town_flat_type = town+' '+flat_type
     model_file = Path(BASE_DIR).joinpath(f"{town_flat_type}.joblib")
     print(model_file)
     if not model_file.exists():

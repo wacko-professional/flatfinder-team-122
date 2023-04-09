@@ -55,7 +55,6 @@ EXCLUSIONS = {
     }
 
 town_flat_types = [t+', '+ft for ft in FLAT_TYPES for t in TOWNS if t+', '+ft not in EXCLUSIONS]
-#town_flat_types = [t+', '+ft for ft in FLAT_TYPES for t in TOWNS]
 defaults = town_flat_types[:2]
 
 options = st.multiselect(
